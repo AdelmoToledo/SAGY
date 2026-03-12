@@ -2,7 +2,7 @@ import './style.css';
 
 async function carregar() {
     //Deploy: Use the deployed backend URL
-    const resposta = await fetch('http://sagy.onrender.com/api/hello/');
+    const resposta = await fetch('https://sagy.onrender.com/api/hello/');
     // Local development
     // const resposta = await fetch('http://localhost:8001/api/hello/');
 
