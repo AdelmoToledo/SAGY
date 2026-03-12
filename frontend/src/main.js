@@ -1,7 +1,12 @@
 import './style.css';
 
 async function carregar() {
-    const resposta = await fetch('http://localhost:8001/api/hello/');
+    //Deploy: Use the deployed backend URL
+    const resposta = await fetch('http://sagy.onrender.com/api/hello/');
+    // Local development
+    // const resposta = await fetch('http://localhost:8001/api/hello/');
+
+    
     const dados = await resposta.json();
     document.querySelector("#app").innerHTML = `<h1>${dados.message}</h1>`;
 }
