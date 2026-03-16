@@ -30,7 +30,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")  # Permite múltiplos hosts separados por vírgula
+# Permite múltiplos hosts separados por vírgula
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,.onrender.com").split(",")
 
 
 # Application definition
@@ -64,8 +65,15 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://sagy.onrender.com",
+    "https://frontend-chi-five-wq3tnag2z1.vercel.app",
 ]
+
+# Importante para o Django aceitar o cabeçalho do Vercel em métodos como POST/PUT
+CSRF_TRUSTED_ORIGINS = [
+    "https://frontend-chi-five-wq3tnag2z1.vercel.app",
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ROOT_URLCONF = 'config.urls'
 
