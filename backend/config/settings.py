@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv() # Carrega as variáveis de ambiente do arquivo .env
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,16 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1z900#!m8xy=!1zmcx5n535n=v5^mwk^eq)==7!it%n9x#^@a9'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == "True"
 
-# DEPLOYMENT: Set this to your domain or IP address in production
-ALLOWED_HOSTS = ['sagy.onrender.com']
-
-# Local development
-# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")  # Permite múltiplos hosts separados por vírgula
 
 
 # Application definition
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
-    'api',
+    'apps.core',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,7 +62,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://sagy.onrender.com",
+]
 
 ROOT_URLCONF = 'config.urls'
 
@@ -115,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
