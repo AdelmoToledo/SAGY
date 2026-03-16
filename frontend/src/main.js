@@ -3,7 +3,7 @@ import { getHome } from './api';
 
 async function start() {
     //Deploy: Use the deployed backend URL
-    //fetch('https://sagy.onrender.com/home/home/')
+    fetch('https://sagy.onrender.com/home/home/')
     // Local development
     // const data = await getHome();
 
