@@ -1,14 +1,30 @@
 import './style.css';
+import { getHome } from './api';
 
-async function carregar() {
+async function start() {
     //Deploy: Use the deployed backend URL
-    const resposta = await fetch('https://sagy.onrender.com/api/hello/');
+    //fetch('https://sagy.onrender.com/home/home/')
     // Local development
-    // const resposta = await fetch('http://localhost:8001/api/hello/');
+    // const data = await getHome();
 
-    
-    const dados = await resposta.json();
-    document.querySelector("#app").innerHTML = `<h1>${dados.message}</h1>`;
+    // Número de whatsapp
+    const whatsappNumber = '556792325346';
+    const whatsappLink = `https://wa.me/${whatsappNumber}`;
+    //document.querySelector("#whatsapp-link").href = whatsappLink;
+
+    document.querySelector("#app").innerHTML = `
+        <h1>SÂGI VEST</h1>
+        <br>
+        <span class="status-badge">${data.message}</span>
+
+        <div style="margin-top: 20px;">
+            <a href="${whatsappLink}" 
+               target="_blank"
+               class="button">
+               Entre em contato via WhatsApp 
+            </a>
+        </div>
+    `;
 }
 
-carregar();
+start();
