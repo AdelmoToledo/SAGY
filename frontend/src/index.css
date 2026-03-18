@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: 330 75% 52%;      /* rosa principal elegante */
+  --primary-soft: 330 70% 92%; /* fundo suave rosado */
+
+  --secondary: 210 60% 55%;    /* azul moderno */
+  --secondary-dark: 210 60% 45%;
+
+  --accent: 25 60% 85%;        /* bege suave */
+
+  --bg: 0 0% 98%;              /* fundo geral */
+  --card: 0 0% 100%;
+  --text: 222 20% 15%;
+  --muted: 220 15% 85%;
+}
+
+body {
+  @apply bg-background text-foreground;
+}

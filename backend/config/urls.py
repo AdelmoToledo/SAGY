@@ -23,4 +23,6 @@ urlpatterns = [
 
     path('home/', include('apps.core.urls')),
 
+    path('login/', include('apps.core.urls')),
+
 ]
