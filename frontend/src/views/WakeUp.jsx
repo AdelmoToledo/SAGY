@@ -21,7 +21,7 @@ const WakeUp = ({ onReady }) => {
     const iniciarProcesso = () => {
         setStatus('counting');
         // "Cutuca" o Render para ele começar a ligar o motor
-        fetch('http://sagy.onrender.com/home/home/').catch(() => {});
+        fetch('https://sagy.onrender.com/home/home/').catch(() => {});
     };
 
     const verificarConexao = async () => {
@@ -31,7 +31,7 @@ const WakeUp = ({ onReady }) => {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-            const res = await fetch('http://sagy.onrender.com/home/home/', {
+            const res = await fetch('https://sagy.onrender.com/home/home/', {
                 signal: controller.signal
             });
 
