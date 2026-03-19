@@ -1,9 +1,13 @@
+import React, { useState} from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
-
 import Login from "./views/Login"
+import WakeUp from "./views/WakeUp"
 import MainLayout from "@/components/layout/MainLayout"
 
 export default function App({ authService }) {
+
+    //1. Estado para controlar se o servidor já está online
+    const [isServerAwake, setServerAwake] = useState(false)
 
     function PrivateRoute({ children }) {
         const token = localStorage.getItem("token")
@@ -15,6 +19,14 @@ export default function App({ authService }) {
         return children
     }
 
+    // 2. 🛡️ GUARDA DE SEGURANÇA: 
+    // Enquanto o servidor não estiver acordado, mostramos APENAS a tela WakeUp.
+    // Isso evita que o authService tente fazer login em um servidor "dormindo".
+    // Em prodrução
+    if (!isServerAwake) {
+        return <WakeUp onReady={() => setServerAwake(true)} />
+    }
+    
     return (
         <Routes>
 

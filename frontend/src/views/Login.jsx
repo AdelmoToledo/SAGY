@@ -61,7 +61,7 @@ export default function Login({ authService }) {
 
                 <CardHeader>
                     <CardTitle className="text-center text-2xl font-bold text-[hsl(var(--primary))]">
-                        SAGY
+                        SAGY VEST
                     </CardTitle>
                 </CardHeader>
 
